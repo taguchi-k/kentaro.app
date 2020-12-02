@@ -43,7 +43,7 @@ export default function Layout({
               <a>
                 <img
                   src="/images/kentaro.png"
-                  className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
+                  className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
                 />
               </a>
