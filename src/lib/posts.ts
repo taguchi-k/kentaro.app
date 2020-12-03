@@ -5,7 +5,7 @@ import remark from "remark";
 import hljs from "remark-highlight.js";
 import html from "remark-html";
 
-const postsDirectory = path.join(process.cwd(), "src/posts");
+const postsDirectory = path.join(process.cwd(), "posts");
 
 export function getSortedPostsData(): {
   date: string;
