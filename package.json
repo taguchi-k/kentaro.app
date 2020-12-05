@@ -9,6 +9,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@types/google.analytics": "0.0.40",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "next": "10.0.3",
