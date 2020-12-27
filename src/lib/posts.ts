@@ -10,6 +10,7 @@ const postsDirectory = path.join(process.cwd(), "posts");
 export function getSortedPostsData(): {
   date: string;
   title: string;
+  content: string;
   id: string;
 }[] {
   // Get file names under /posts
@@ -20,15 +21,16 @@ export function getSortedPostsData(): {
 
     // Read markdown file as string
     const fullPath = path.join(postsDirectory, fileName);
-    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const content = fs.readFileSync(fullPath, "utf8");
 
     // Use gray-matter to parse the post metadata section
-    const matterResult = matter(fileContents);
+    const matterResult = matter(content);
 
     // Combine the data with the id
     return {
       id,
       ...(matterResult.data as { date: string; title: string }),
+      content,
     };
   });
 
