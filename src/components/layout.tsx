@@ -2,9 +2,11 @@ import Head from "next/head";
 import styles from "./layout.module.css";
 import utilStyles from "../styles/utils.module.css";
 import Link from "next/link";
+import Image from "next/image";
 
-const name = "kentaro";
 export const siteTitle = "kentaro.app";
+const name = "kentaro";
+const imageSize = "400";
 
 export default function Layout({
   children,
@@ -30,10 +32,12 @@ export default function Layout({
       <header className={styles.header}>
         {home ? (
           <>
-            <img
+            <Image
               src="/images/kentaro.png"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
+              height={imageSize}
+              width={imageSize}
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -41,10 +45,12 @@ export default function Layout({
           <>
             <Link href="/">
               <a>
-                <img
+                <Image
                   src="/images/kentaro.png"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
+                  height={imageSize}
+                  width={imageSize}
                 />
               </a>
             </Link>
