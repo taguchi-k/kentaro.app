@@ -4,9 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run build:rss",
-    "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
-    "postbuild": "next-sitemap",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint ."
   },
@@ -14,8 +12,6 @@
     "/next-sitemap.js"
   ],
   "dependencies": {
-    "@types/google.analytics": "0.0.40",
-    "@types/rss": "0.0.28",
     "date-fns": "^2.16.1",
     "gray-matter": "^4.0.2",
     "next": "10.0.3",
@@ -33,6 +29,7 @@
     "@types/prettier": "^2.1.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "17.0.0",
+    "@types/rss": "0.0.28",
     "@typescript-eslint/eslint-plugin": "^4.8.2",
     "@typescript-eslint/parser": "^4.8.2",
     "eslint": "^7.14.0",
