@@ -6,7 +6,6 @@ import Image from "next/image";
 
 export const siteTitle = "kentaro.app";
 const name = "kentaro";
-const imageSize = "400";
 
 export default function Layout({
   children,
@@ -36,8 +35,8 @@ export default function Layout({
               src="/images/kentaro.png"
               className={`${styles.headerHomeImage} ${utilStyles.borderCircle}`}
               alt={name}
-              height={imageSize}
-              width={imageSize}
+              height="200"
+              width="200"
             />
             <h1 className={utilStyles.heading2Xl}>{name}</h1>
           </>
@@ -49,8 +48,8 @@ export default function Layout({
                   src="/images/kentaro.png"
                   className={`${styles.headerImage} ${utilStyles.borderCircle}`}
                   alt={name}
-                  height={imageSize}
-                  width={imageSize}
+                  height="100"
+                  width="100"
                 />
               </a>
             </Link>

@@ -5,6 +5,8 @@ date: '2020-01-02'
 # H1のテスト
 We recommend using **Static Generation** (with and without data) whenever possible because your page can be built once and served by CDN, which makes it much faster than having a server render the page on every request.
 
+[リンクのTest]()
+
 ```swift
 struct Hoge {
     let name: String
@@ -17,12 +19,18 @@ let hoge = Hoge(name: "hogehoge", age: 20)
 これは `コード` のテストです
 
 ## H2のテスト
+画像のTest
+
+![kobaton](https://www.pref.saitama.lg.jp/a0301/kobaton/design-life/01/images/1-1-02.png)
+
 You can use Static Generation for many types of pages, including:
 
 - Marketing pages
 - Blog posts
 - E-commerce product listings
 - Help and documentation
+
+![kobaton2](https://www.pref.saitama.lg.jp/a0301/kobaton/design-others/02/images/5-2-32.png)
 
 ### H3のテスト
 You should ask yourself: "Can I pre-render this page **ahead** of a user's request?" If the answer is yes, then you should choose Static Generation.

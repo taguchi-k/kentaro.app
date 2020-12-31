@@ -1,6 +1,9 @@
 const { config } = require("process");
 
 module.exports = {
+  images: {
+    domains: ["www.pref.saitama.lg.jp"],
+  },
   target: "serverless",
   async rewrites() {
     return [
