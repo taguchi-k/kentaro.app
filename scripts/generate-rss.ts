@@ -1,7 +1,7 @@
 import fs from "fs";
 import RSS from "rss";
-import { getSortedPostsData } from "../lib/posts";
-import { siteTitle } from "../components/layout";
+import { getSortedPostsData } from "../src/lib/posts";
+import { siteTitle } from "../src/components/layout";
 
 const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME;
 
