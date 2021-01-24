@@ -1,10 +1,14 @@
 import Head from "next/head";
-import Layout, { siteTitle } from "../components/layout";
+import Layout, { siteTitle, baseUrl } from "../components/layout";
 import utilStyles from "../styles/utils.module.css";
 import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
 import { GetStaticProps } from "next";
+
+const image = `https://og-image-lake-nine.vercel.app/${encodeURI(
+  siteTitle
+)}.png?md=0&fontSize=75px`;
 
 export default function Home({
   allPostsData,
@@ -19,6 +23,16 @@ export default function Home({
     <Layout home>
       <Head>
         <title>{siteTitle}</title>
+        <link rel="canonical" href={baseUrl} />
+
+        <meta property="og:title" content={siteTitle} key="og:title" />
+        <meta property="og:type" content="website" key="og:type" />
+        <meta property="og:url" content={baseUrl} key="og:url" />
+        <meta property="og:image" content={image} key="og:image" />
+
+        <meta name="twitter:url" content={baseUrl} key="twitter:url" />
+        <meta name="twitter:title" content={siteTitle} key="twitter:title" />
+        <meta name="twitter:image" content={image} key="twitter:image" />
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Software Engineer: Swift / iOS / SwiftUI / Combine </p>
