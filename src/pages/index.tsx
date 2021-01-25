@@ -5,10 +5,10 @@ import { getSortedPostsData } from "../lib/posts";
 import Link from "next/link";
 import Date from "../components/date";
 import { GetStaticProps } from "next";
+import { getOgImageUrl } from "../lib/og_image";
 
-const image = `https://og-image-lake-nine.vercel.app/${encodeURI(
-  siteTitle
-)}.png?md=0&fontSize=125px`;
+const ogImageTitle = `**${siteTitle}**`;
+const image = getOgImageUrl({ title: ogImageTitle, fontSize: 125 });
 
 export default function Home({
   allPostsData,
