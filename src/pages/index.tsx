@@ -8,7 +8,7 @@ import { GetStaticProps } from "next";
 
 const image = `https://og-image-lake-nine.vercel.app/${encodeURI(
   siteTitle
-)}.png?md=0&fontSize=75px`;
+)}.png?md=0&fontSize=125px`;
 
 export default function Home({
   allPostsData,
