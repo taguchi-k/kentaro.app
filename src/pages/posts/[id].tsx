@@ -4,6 +4,7 @@ import Head from "next/head";
 import Date from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticProps, GetStaticPaths } from "next";
+import { getOgImageUrl } from "../../lib/og_image";
 
 export default function Post({
   postData,
@@ -16,9 +17,7 @@ export default function Post({
   };
 }): JSX.Element {
   const url = `${baseUrl}${postData.id}`;
-  const image = `https://og-image-lake-nine.vercel.app/${encodeURI(
-    postData.title
-  )}.png?md=0&fontSize=100px`;
+  const image = getOgImageUrl({ title: postData.title, fontSize: 100 });
 
   return (
     <Layout>
