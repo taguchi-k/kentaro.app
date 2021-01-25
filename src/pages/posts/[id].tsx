@@ -18,7 +18,7 @@ export default function Post({
   const url = `${baseUrl}${postData.id}`;
   const image = `https://og-image-lake-nine.vercel.app/${encodeURI(
     postData.title
-  )}.png?md=0&fontSize=75px`;
+  )}.png?md=0&fontSize=100px`;
 
   return (
     <Layout>
