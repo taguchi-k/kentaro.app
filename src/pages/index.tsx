@@ -35,7 +35,9 @@ export default function Home({
         <meta name="twitter:image" content={image} key="twitter:image" />
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>Software Engineer: Swift / iOS / SwiftUI / Combine </p>
+        <p>
+          Software Engineer: Swift / iOS / SwiftUI / Combine / Flutter / Dart
+        </p>
         <p>
           You can contact me on{" "}
           <a href="https://twitter.com/kenkenken_3">Twitter</a>
