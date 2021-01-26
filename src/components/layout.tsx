@@ -8,6 +8,7 @@ export const baseUrl = "https://kentaro.app/";
 
 const name = "kentaro";
 const description = "Kentaro's website";
+const rssTitle = `RSS Feed for ${siteTitle}`;
 
 export default function Layout({
   children,
@@ -20,10 +21,17 @@ export default function Layout({
     <div className={styles.container}>
       <Head>
         <meta property="description" content={description} />
+        <meta name="author" content={name}></meta>
 
         <link rel="icon" href="/favicon.ico" />
         <link rel="shortcut icon" href={"/favicon.ico"} />
         <link rel="apple-touch-icon" href={"/apple-touch-icon.png"} />
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={rssTitle}
+          href="/feed.xml"
+        />
 
         <meta property="og:site_name" content={siteTitle} key="og:site_name" />
         <meta
