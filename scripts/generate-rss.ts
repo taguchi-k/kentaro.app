@@ -1,6 +1,6 @@
 import fs from "fs";
 import RSS from "rss";
-import { getSortedPostsData } from "../src/lib/posts";
+import { getSortedPostsData, getPostData } from "../src/lib/posts";
 import { siteTitle } from "../src/components/layout";
 
 const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME;
@@ -9,19 +9,24 @@ if (!HOST_NAME) {
   throw new Error("host name couldn't resolved.");
 }
 
-const generate = (): void => {
+const generate = async (): Promise<void> => {
   const feed = new RSS({
     title: siteTitle,
     site_url: HOST_NAME,
     feed_url: `${HOST_NAME}/feed.xml`,
   });
 
-  const postsData = getSortedPostsData();
+  const postsData = await Promise.all(
+    getSortedPostsData().map(async (post) => {
+      const processedContent = await getPostData(post.id);
+      return processedContent;
+    })
+  );
 
   postsData.map((post) => {
     feed.item({
       title: post.title,
-      description: post.content,
+      description: post.contentHtml,
       guid: post.id,
       url: `${HOST_NAME}/posts/${post.id}`,
       date: post.date,
@@ -33,4 +38,4 @@ const generate = (): void => {
   fs.writeFileSync("./.next/static/feed.xml", rss);
 };
 
-generate();
+void generate();
