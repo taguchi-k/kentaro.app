@@ -8,6 +8,14 @@ module.exports = {
         source: "/feed.xml",
         destination: "/_next/static/feed.xml",
       },
+      {
+        source: "/sitemap.xml",
+        destination: "/_next/static/sitemap.xml",
+      },
+      {
+        source: "/robots.txt",
+        destination: "/_next/static/robots.txt",
+      },
     ];
   },
   webpack: (config, { isServer, dev }) => {
