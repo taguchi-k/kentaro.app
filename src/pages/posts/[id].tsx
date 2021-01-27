@@ -16,7 +16,7 @@ export default function Post({
     contentHtml: string;
   };
 }): JSX.Element {
-  const url = `${baseUrl}${postData.id}`;
+  const url = `${baseUrl}/posts/${postData.id}`;
   const image = getOgImageUrl({ title: postData.title, fontSize: 100 });
 
   return (
