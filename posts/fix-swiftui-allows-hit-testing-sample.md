@@ -83,3 +83,8 @@ content
 動くようになった🎉  
 
 ![iOS14](https://user-images.githubusercontent.com/17519073/105905281-9902e800-6065-11eb-9d40-94c327aad77a.gif)
+
+### GitHub
+* [リポジトリ](https://github.com/taguchi-k/swiftui-allows-hit-testing-sample)
+  * [Issue](https://github.com/taguchi-k/swiftui-allows-hit-testing-sample/issues/5)
+  * [PR](https://github.com/taguchi-k/swiftui-allows-hit-testing-sample/pull/6)
