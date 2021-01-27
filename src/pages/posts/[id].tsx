@@ -24,11 +24,17 @@ export default function Post({
       <Head>
         <title>{postData.title}</title>
         <link rel="canonical" href={url} />
+        <meta property="description" content={postData.contentHtml} />
 
         <meta property="og:title" content={postData.title} key="og:title" />
         <meta property="og:type" content="article" key="og:type" />
         <meta property="og:url" content={url} key="og:url" />
         <meta property="og:image" content={image} key="og:image" />
+        <meta
+          property="og:description"
+          content={postData.contentHtml}
+          key="og:description"
+        />
 
         <meta name="twitter:url" content={image} key="twitter:url" />
         <meta
@@ -37,6 +43,11 @@ export default function Post({
           key="twitter:title"
         />
         <meta name="twitter:image" content={image} key="twitter:image" />
+        <meta
+          name="twitter:description"
+          content={postData.contentHtml}
+          key="twitter:description"
+        />
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
