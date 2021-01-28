@@ -2,9 +2,6 @@ import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import * as gtag from "../lib/gtag";
-
-import { initGA, logPageView } from "../lib/analytics";
-
 import "../styles/globals.css";
 import "highlight.js/styles/github.css";
 
