@@ -82,7 +82,7 @@ content
 ### 結果
 動くようになった🎉  
 
-![iOS14](https://user-images.githubusercontent.com/17519073/105905281-9902e800-6065-11eb-9d40-94c327aad77a.gif)
+※動作している様子は[リポジトリのREADME](https://github.com/taguchi-k/swiftui-allows-hit-testing-sample/blob/master/README.md)参照
 
 ### GitHub
 * [リポジトリ](https://github.com/taguchi-k/swiftui-allows-hit-testing-sample)
