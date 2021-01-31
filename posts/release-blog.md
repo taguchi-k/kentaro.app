@@ -12,7 +12,7 @@ date: '2020-01-25'
   * 普段触らない技術に挑戦するのは大変だけど楽しい
 
 ## Technology Stack
-![Technology Stack](https://og-image.vercel.app/Technology%20Stack.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fvercel-triangle-black.svg&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg&images=https%3A%2F%2Fgithub.githubassets.com%2Fimages%2Fmodules%2Flogos_page%2FGitHub-Mark.png&images=https%3A%2F%2Fcdn.jsdelivr.net%2Fgh%2Fremojansen%2Flogo.ts%40master%2Fts.svg)
+![Technology Stack](../images/technology_stack.webp)
 
 利用したサービスや技術はこんな（いわゆるJAMstack的な）感じ  
 
