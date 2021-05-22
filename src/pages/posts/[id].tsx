@@ -16,45 +16,42 @@ export default function Post({
     contentHtml: string;
   };
 }): JSX.Element {
-  const url = `${baseUrl}/posts/${postData.id}`;
-  const image = getOgImageUrl({ title: postData.title, fontSize: 100 });
+  const { id, title, date, contentHtml } = postData;
+  const url = `${baseUrl}/posts/${id}`;
+  const image = getOgImageUrl({ title: `**${title}**`, fontSize: 100 });
 
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{title}</title>
         <link rel="canonical" href={url} />
-        <meta property="description" content={postData.contentHtml} />
+        <meta property="description" content={contentHtml} />
 
-        <meta property="og:title" content={postData.title} key="og:title" />
+        <meta property="og:title" content={title} key="og:title" />
         <meta property="og:type" content="article" key="og:type" />
         <meta property="og:url" content={url} key="og:url" />
         <meta property="og:image" content={image} key="og:image" />
         <meta
           property="og:description"
-          content={postData.contentHtml}
+          content={contentHtml}
           key="og:description"
         />
 
         <meta name="twitter:url" content={image} key="twitter:url" />
-        <meta
-          name="twitter:title"
-          content={postData.title}
-          key="twitter:title"
-        />
+        <meta name="twitter:title" content={title} key="twitter:title" />
         <meta name="twitter:image" content={image} key="twitter:image" />
         <meta
           name="twitter:description"
-          content={postData.contentHtml}
+          content={contentHtml}
           key="twitter:description"
         />
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}>{title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          <Date dateString={date} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
       </article>
     </Layout>
   );
