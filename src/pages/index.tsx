@@ -7,8 +7,7 @@ import Date from "../components/date";
 import { GetStaticProps } from "next";
 import { getOgImageUrl } from "../lib/og_image";
 
-const ogImageTitle = `**${siteTitle}**`;
-const image = getOgImageUrl({ title: ogImageTitle, fontSize: 125 });
+const image = getOgImageUrl({ title: `**${siteTitle}**`, fontSize: 125 });
 
 export default function Home({
   allPostsData,
