@@ -1,6 +1,6 @@
 ---
 title: '[SwiftUI]Gestureの活性・非活性をコントロールするサンプルのiOS14バグ修正'
-date: '2020-01-27'
+date: '2021-01-27'
 ---
 以前[allowsHitTestingを利用してGestureの活性・非活性をコントロールする](https://qiita.com/ktaguchi/items/931078c204512a18090d)という記事を書いたのだが、iOS14で動作しなくなっていたので修正した。
 
