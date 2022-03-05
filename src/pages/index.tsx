@@ -35,7 +35,8 @@ export default function Home({
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          Software Engineer: Swift / iOS / SwiftUI / Combine / Flutter / Dart
+          Software Engineer: TypeScript, React, Node.js / Dart, Flutter / Swift,
+          iOS
         </p>
         <p>
           You can contact me on{" "}
