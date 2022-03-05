@@ -2,14 +2,6 @@
   "name": "kentaro.app",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build && npm run build:rss",
-    "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
-    "postbuild": "next-sitemap",
-    "start": "next start",
-    "lint": "eslint ."
-  },
   "eslintIgnore": [
     "/next-sitemap.js"
   ],
@@ -43,5 +35,18 @@
     "next-sitemap": "^1.3.22",
     "prettier": "^2.2.1",
     "typescript": "^4.1.2"
+  },
+  "engines": {
+    "node": "14.18.3",
+    "npm": "8.1.2"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && npm run build:rss",
+    "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
+    "postbuild": "next-sitemap",
+    "start": "next start",
+    "setup": "node -v && npm -v && npm ci",
+    "lint": "eslint ."
   }
 }
