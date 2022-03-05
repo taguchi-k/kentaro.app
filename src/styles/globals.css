@@ -2,10 +2,10 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, "BlinkMacSystemFont", "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif, "Segoe UI Emoji";
   line-height: 1.6;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 * {
@@ -26,10 +26,20 @@ img {
   display: block;
 }
 
+pre code.hljs {
+  border-radius: 0.7rem;
+  padding: 1rem;
+  font-size: .9rem;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  -webkit-font-smoothing: antialiased;
+}
+
 code {
   border-radius: 0.2rem;
-  font-family: monospace;
-  font-size: 0.8rem;
+  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: .9rem;
   background-color: #eee;
   padding: 0.2rem 0.4rem;
 }

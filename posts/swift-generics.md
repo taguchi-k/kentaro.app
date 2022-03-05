@@ -15,7 +15,6 @@ IntやStringなどの具体的な型の代わりに型パラメータ（Type Par
 例えば、下記のようにArrayの中にはIntでもStringでも同じように格納できます。  
 
 ```swift
-
 // 例
 let intArray = [2, 4, 6]
 let stringArray = ["a", "b", "c"]
@@ -46,7 +45,6 @@ let intTuple = makeTuple(24, 32)
 Stringでも同じことがしたいので、上記関数のIntの部分をStringに変えた関数を作ります。
 
 ```swift
-
 func makeTuple(_ a: String, _ b: String) -> (String, String) {
     return (a, b)
 }
@@ -106,11 +104,9 @@ let testTuple3 = makeTuple(t1, t3)
 
 ```swift
 func makeTuple<T>(_ a: T, _ b: inout T) -> (T, T) {
-
     if b < a {
         b = a
     }
-
     return (a, b)
 }
 ```
@@ -120,11 +116,9 @@ func makeTuple<T>(_ a: T, _ b: inout T) -> (T, T) {
 
 ```swift
 func makeTuple<T: Comparable>(_ a: T, _ b: inout T) -> (T, T) {
-
     if b < a {
         b = a
     }
-
     return (a, b)
 }
 ```
