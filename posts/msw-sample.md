@@ -1,6 +1,6 @@
 ---
 title: '[msw, Jest, Node.js] HTTP通信をモックにしてテストする'
-date: '2022-03-06'
+date: '2022-03-07'
 ---
 JestでHTTPリクエストをインターセプトしてモックを返すのに利用した[Mock Service Worker（msw）](https://mswjs.io/ )の紹介をしたいと思います。環境はNodeです。  
 
@@ -87,12 +87,12 @@ describe('getExamples()', () => {
 ### mockサーバーのsetup
 ```ts
 const server = setupServer(
-    rest.get('http://example.com/examples', (req, res, ctx) => {
-      // http://example.com/examples へのリクエストをインターセプトして
-      // ステータスコード200を返す
-      return res(ctx.status(200));
-    })
-  );
+  rest.get('http://example.com/examples', (req, res, ctx) => {
+    // http://example.com/examples へのリクエストをインターセプトして
+    // ステータスコード200を返す
+    return res(ctx.status(200));
+  })
+);
 ```
 
 上記のコードでは `setupServer()` に `RequestHandler` を渡してmockサーバーをsetupしています。  
@@ -102,26 +102,26 @@ const server = setupServer(
 また、 `json()` を使ってJSON形式のデータを返すようにすることもできます。
 
 ```ts
-  const server = setupServer(
-    rest.get('http://example.com/examples', (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        // JSON形式のデータを返す
-        ctx.json({ id: 'example-id', name: 'example-name' })
-      );
-    })
-  );
+const server = setupServer(
+  rest.get('http://example.com/examples', (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      // JSON形式のデータを返す
+      ctx.json({ id: 'example-id', name: 'example-name' })
+    );
+  })
+);
 ```
 
 ### `RequestHandler` のoverride
 ```ts
-    // server.use() を使うとこのケースでのレスポンスをカスタマイズできる
-    server.use(
-      rest.get('http://example.com/examples', (req, res, ctx) => {
-        // このケースではステータスコード500を返すようにした
-        return res(ctx.status(500));
-      })
-    );
+// server.use() を使うとこのケースでのレスポンスをカスタマイズできる
+server.use(
+  rest.get('http://example.com/examples', (req, res, ctx) => {
+    // このケースではステータスコード500を返すようにした
+    return res(ctx.status(500));
+  })
+);
 ```
 
 `server.use()` を使い、既存のpathの `RequestHandler` をoverrideできます。  
@@ -130,12 +130,12 @@ const server = setupServer(
 下記のようにネットワークエラーのモックも可能です。
 
 ```ts
-    server.use(
-      rest.get('http://example.com/examples', (req, res) => {
-        // このケースではネットワークエラーを発生させる
-        return res.networkError('Failed to connect');
-      })
-    );
+server.use(
+  rest.get('http://example.com/examples', (req, res) => {
+    // このケースではネットワークエラーを発生させる
+    return res.networkError('Failed to connect');
+  })
+);
 ```
 
 このようにエラー周りのテストも簡単に実装できますね。  
