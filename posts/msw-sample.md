@@ -1,5 +1,5 @@
 ---
-title: '[msw, Jest, Node.js] HTTP通信をモックにしてテストする'
+title: '[msw, Jest, Node.js] mswを利用してHTTP境界のテストを書く'
 date: '2022-03-07'
 ---
 JestでHTTPリクエストをインターセプトしてモックを返すのに利用した[Mock Service Worker（msw）](https://mswjs.io/ )の紹介をしたいと思います。環境はNodeです。  
