@@ -1,1 +1,1 @@
-declare module "remark-highlight.js";
+declare module 'remark-highlight.js';

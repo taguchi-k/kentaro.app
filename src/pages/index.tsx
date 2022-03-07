@@ -1,23 +1,27 @@
-import Head from "next/head";
-import Layout, { siteTitle, baseUrl } from "../components/layout";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
-import Link from "next/link";
-import Date from "../components/date";
-import { GetStaticProps } from "next";
-import { getOgImageUrl } from "../lib/og_image";
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
+import Date from '../components/date';
+import Layout, { siteTitle, baseUrl } from '../components/layout';
+import { getOgImageUrl } from '../lib/og_image';
+import { getSortedPostsData } from '../lib/posts';
+import utilStyles from '../styles/utils.module.css';
+
+type Props = {
+  allPosts: {
+    id: string;
+    date: string;
+    title: string;
+  }[];
+};
 
 const image = getOgImageUrl({ title: `**${siteTitle}**`, fontSize: 125 });
 
-export default function Home({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string;
-    title: string;
-    id: string;
-  }[];
-}): JSX.Element {
+export default function Home(props: Props): JSX.Element {
   return (
     <Layout home>
       <Head>
@@ -39,14 +43,14 @@ export default function Home({
           iOS
         </p>
         <p>
-          You can contact me on{" "}
+          You can contact me on{' '}
           <a href="https://twitter.com/kenkenken_3">Twitter</a>
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
+          {props.allPosts.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
@@ -63,11 +67,13 @@ export default function Home({
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+export const getStaticProps: GetStaticProps<Props, never> = async () => {
+  const allPosts = getSortedPostsData().map(({ id, date, title }) => {
+    return { id, date, title };
+  });
   return Promise.resolve({
     props: {
-      allPostsData,
+      allPosts,
     },
   });
 };

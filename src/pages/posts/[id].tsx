@@ -1,22 +1,28 @@
-import Layout, { baseUrl } from "../../components/layout";
-import { getAllPostsIds, getPostData } from "../../lib/posts";
-import Head from "next/head";
-import Date from "../../components/date";
-import utilStyles from "../../styles/utils.module.css";
-import { GetStaticProps, GetStaticPaths } from "next";
-import { getOgImageUrl } from "../../lib/og_image";
+import {
+  GetStaticProps,
+  GetStaticPaths,
+  GetStaticPropsContext,
+  GetStaticPropsResult,
+} from 'next';
+import Head from 'next/head';
+import { ParsedUrlQuery } from 'querystring';
+import Date from '../../components/date';
+import Layout, { baseUrl } from '../../components/layout';
+import { getOgImageUrl } from '../../lib/og_image';
+import { getAllPostsIds, getPostData } from '../../lib/posts';
+import utilStyles from '../../styles/utils.module.css';
 
-export default function Post({
-  postData,
-}: {
+type Props = {
   postData: {
     id: string;
     title: string;
     date: string;
     contentHtml: string;
   };
-}): JSX.Element {
-  const { id, title, date, contentHtml } = postData;
+};
+
+export default function Post(props: Props): JSX.Element {
+  const { id, title, date, contentHtml } = props.postData;
   const url = `${baseUrl}/posts/${id}`;
   const image = getOgImageUrl({ title: `**${title}**`, fontSize: 100 });
 
@@ -57,17 +63,22 @@ export default function Post({
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function getStaticPaths() {
   const paths = getAllPostsIds();
   return Promise.resolve({
     paths,
     fallback: false,
   });
+}
+
+type Params = ParsedUrlQuery & {
+  id: string;
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params === undefined ? "" : (params.id as string);
-  const postData = await getPostData(id);
+export const getStaticProps: GetStaticProps<Props, Params> = async ({
+  params,
+}) => {
+  const postData = await getPostData(params?.id ?? '');
   return {
     props: {
       postData,

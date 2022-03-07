@@ -1,11 +1,11 @@
-export const getOgImageUrl = ({
+const baseUrl = 'https://og-image-lake-nine.vercel.app/';
+
+export function getOgImageUrl({
   title,
   fontSize,
 }: {
   title: string;
   fontSize: number;
-}): string => {
+}): string {
   return `${baseUrl}${encodeURI(title)}.png?md=1&fontSize=${fontSize}px`;
-};
-
-const baseUrl = "https://og-image-lake-nine.vercel.app/";
+}
