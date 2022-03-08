@@ -1,12 +1,12 @@
-import Head from "next/head";
-import styles from "./layout.module.css";
-import utilStyles from "../styles/utils.module.css";
-import Link from "next/link";
+import Head from 'next/head';
+import Link from 'next/link';
+import utilStyles from '../styles/utils.module.css';
+import styles from './layout.module.css';
 
-export const siteTitle = "kentaro.app";
-export const baseUrl = "https://kentaro.app/";
+export const siteTitle = 'kentaro.app';
+export const baseUrl = 'https://kentaro.app/';
 
-const name = "kentaro";
+const name = 'kentaro';
 const description = "Kentaro's website";
 const rssTitle = `RSS Feed for ${siteTitle}`;
 
@@ -24,8 +24,8 @@ export default function Layout({
         <meta name="author" content={name}></meta>
 
         <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href={"/favicon.ico"} />
-        <link rel="apple-touch-icon" href={"/apple-touch-icon.png"} />
+        <link rel="shortcut icon" href={'/favicon.ico'} />
+        <link rel="apple-touch-icon" href={'/apple-touch-icon.png'} />
         <link
           rel="alternate"
           type="application/rss+xml"
