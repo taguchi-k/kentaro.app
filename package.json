@@ -43,8 +43,8 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build && npm run build:rss",
-    "build:rss": "node ./.next/serverless/scripts/generate-rss.js",
+    "build": "next build ",
+    "build:vercel": "npm run check && npm run build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "setup": "node -v && npm -v && npm ci",

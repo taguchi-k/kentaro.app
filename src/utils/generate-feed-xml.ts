@@ -1,19 +1,19 @@
-import fs from 'fs';
 import RSS from 'rss';
-import { siteTitle } from '../src/components/layout';
-import { getSortedPostsData, getPostData } from '../src/lib/posts';
 
-const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME;
+import { siteTitle } from 'components/layout';
+import { getPostData, getSortedPostsData } from 'lib/posts';
 
-if (!HOST_NAME) {
-  throw new Error("host name couldn't resolved.");
-}
+export async function generateFeedXml(): Promise<string> {
+  const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME;
 
-async function generate(): Promise<void> {
+  if (!HOST_NAME) {
+    throw new Error("host name couldn't resolved.");
+  }
+
   const feed = new RSS({
     title: siteTitle,
-    site_url: HOST_NAME ?? '',
-    feed_url: `${HOST_NAME ?? ''}/feed.xml`,
+    site_url: HOST_NAME,
+    feed_url: `${HOST_NAME}/feed.xml`,
   });
 
   const postsData = await Promise.all(
@@ -34,8 +34,6 @@ async function generate(): Promise<void> {
     });
   });
 
-  const rss = feed.xml({ indent: true });
-  fs.writeFileSync('./.next/static/feed.xml', rss);
+  // XML形式の文字列にする
+  return feed.xml();
 }
-
-void generate();
