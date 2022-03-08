@@ -1,8 +1,4 @@
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-} from 'next';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import Date from '../components/date';

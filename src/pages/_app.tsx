@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import * as gtag from '../lib/gtag';
 import '../styles/globals.css';
-import 'highlight.js/styles/github-dark.css';
+import 'highlight.js/styles/github-dark-dimmed.css';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();

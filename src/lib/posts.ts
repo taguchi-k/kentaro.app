@@ -1,9 +1,11 @@
 import fs from 'fs';
 import matter from 'gray-matter';
 import path from 'path';
-import { remark } from 'remark';
-import hljs from 'remark-highlight.js';
-import html from 'remark-html';
+import rehypeHighlight from 'rehype-highlight';
+import rehypeStringify from 'rehype-stringify';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
@@ -59,9 +61,7 @@ export function getAllPostsIds(): {
   });
 }
 
-export async function getPostData(
-  id: string
-): Promise<{
+export async function getPostData(id: string): Promise<{
   date: string;
   title: string;
   id: string;
@@ -74,9 +74,11 @@ export async function getPostData(
   const matterResult = matter(fileContents);
 
   // Use remark to convert markdown into HTML string
-  const processedContent = await remark()
-    .use(hljs)
-    .use(html)
+  const processedContent = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
     .process(matterResult.content);
   const contentHtml = processedContent.toString();
 

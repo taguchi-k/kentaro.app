@@ -1,9 +1,4 @@
-import {
-  GetStaticProps,
-  GetStaticPaths,
-  GetStaticPropsContext,
-  GetStaticPropsResult,
-} from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
 import Date from '../../components/date';
@@ -63,13 +58,13 @@ export default function Post(props: Props): JSX.Element {
   );
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getAllPostsIds();
   return Promise.resolve({
     paths,
     fallback: false,
   });
-}
+};
 
 type Params = ParsedUrlQuery & {
   id: string;
