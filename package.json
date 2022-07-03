@@ -21,11 +21,13 @@
   },
   "devDependencies": {
     "@types/gtag.js": "0.0.10",
+    "@types/jest": "28.1.4",
     "@types/node": "17.0.16",
     "@types/react": "18.0.14",
     "@types/rss": "0.0.28",
     "@typescript-eslint/eslint-plugin": "5.29.0",
     "@typescript-eslint/parser": "5.29.0",
+    "concurrently": "7.2.2",
     "eslint": "8.18.0",
     "eslint-config-next": "12.1.6",
     "eslint-config-prettier": "8.5.0",
@@ -33,8 +35,12 @@
     "eslint-plugin-react": "7.30.0",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unused-imports": "2.0.0",
+    "jest": "28.1.2",
+    "jest-environment-jsdom": "28.1.2",
     "next-sitemap": "3.1.7",
     "prettier": "2.7.1",
+    "ts-jest": "28.0.5",
+    "ts-node": "10.8.2",
     "typescript": "4.7.4"
   },
   "engines": {
@@ -48,9 +54,10 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "setup": "node -v && npm -v && npm ci",
-    "check": "npm run check:format && npm run check:lint && npm run check:typing",
+    "check": "concurrently -n \" typing,   lint, format\" --prefix-colors dim \"npm run check:typing\" \"npm run check:lint\" \"npm run check:format\" \"npm run test\"",
     "check:format": "npx prettier --check .",
     "check:lint": "npx eslint .",
-    "check:typing": "npx tsc -p . --noEmit"
+    "check:typing": "npx tsc -p . --noEmit",
+    "test": "jest"
   }
 }
