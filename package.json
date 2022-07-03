@@ -6,40 +6,46 @@
     "/next-sitemap.js"
   ],
   "dependencies": {
-    "@types/gtag.js": "0.0.8",
     "date-fns": "2.28.0",
     "gray-matter": "4.0.3",
-    "highlight.js": "^11.4.0",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "rehype-highlight": "^5.0.2",
-    "rehype-stringify": "^9.0.3",
-    "remark-parse": "^10.0.1",
-    "remark-rehype": "^10.1.0",
+    "highlight.js": "11.5.1",
+    "next": "12.2.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "rehype-highlight": "5.0.2",
+    "rehype-stringify": "9.0.3",
+    "remark-parse": "10.0.1",
+    "remark-rehype": "10.1.0",
     "rss": "1.2.2",
-    "unified": "^10.1.1"
+    "unified": "10.1.2"
   },
   "devDependencies": {
+    "@types/gtag.js": "0.0.10",
+    "@types/jest": "28.1.4",
     "@types/node": "17.0.16",
-    "@types/react": "17.0.39",
+    "@types/react": "18.0.14",
     "@types/rss": "0.0.28",
-    "@typescript-eslint/eslint-plugin": "5.13.0",
-    "@typescript-eslint/parser": "5.13.0",
-    "eslint": "8.10.0",
-    "eslint-config-next": "12.0.10",
-    "eslint-config-prettier": "8.3.0",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "concurrently": "7.2.2",
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.1.6",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import-access": "1.0.1",
-    "eslint-plugin-react": "7.28.0",
-    "eslint-plugin-react-hooks": "4.3.0",
+    "eslint-plugin-react": "7.30.0",
+    "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-unused-imports": "2.0.0",
-    "next-sitemap": "^1.3.22",
-    "prettier": "2.5.1",
-    "typescript": "4.6.2"
+    "jest": "28.1.2",
+    "jest-environment-jsdom": "28.1.2",
+    "next-sitemap": "3.1.7",
+    "prettier": "2.7.1",
+    "ts-jest": "28.0.5",
+    "ts-node": "10.8.2",
+    "typescript": "4.7.4"
   },
   "engines": {
-    "node": "14.18.3",
-    "npm": "8.1.2"
+    "node": "16.14.0",
+    "npm": "8.3.1"
   },
   "scripts": {
     "dev": "next dev",
@@ -48,9 +54,10 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "setup": "node -v && npm -v && npm ci",
-    "check": "npm run check:format && npm run check:lint && npm run check:typing",
+    "check": "concurrently -n \" typing,   lint, format\" --prefix-colors dim \"npm run check:typing\" \"npm run check:lint\" \"npm run check:format\" \"npm run test\"",
     "check:format": "npx prettier --check .",
     "check:lint": "npx eslint .",
-    "check:typing": "npx tsc -p . --noEmit"
+    "check:typing": "npx tsc -p . --noEmit",
+    "test": "jest"
   }
 }
