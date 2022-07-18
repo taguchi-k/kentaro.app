@@ -1,23 +1,19 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+
 import Date from '../components/date';
 import Layout, { siteTitle, baseUrl } from '../components/layout';
 import { getOgImageUrl } from '../lib/og_image';
 import { getSortedPostsData } from '../lib/posts';
 import utilStyles from '../styles/utils.module.css';
+import { Post } from 'models/post';
 
-type Props = {
-  allPosts: {
-    id: string;
-    date: string;
-    title: string;
-  }[];
-};
+type Props = { posts: readonly Pick<Post, 'id' | 'title' | 'dateString'>[] };
 
 const image = getOgImageUrl({ title: `**${siteTitle}**`, fontSize: 125 });
 
-export default function Home(props: Props): JSX.Element {
+export default function Home({ posts }: Props): JSX.Element {
   return (
     <Layout home>
       <Head>
@@ -46,14 +42,14 @@ export default function Home(props: Props): JSX.Element {
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
         <ul className={utilStyles.list}>
-          {props.allPosts.map(({ id, date, title }) => (
+          {posts.map(({ id, title, dateString }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link href={`/posts/${id}`}>
                 <a>{title}</a>
               </Link>
               <br />
               <small className={utilStyles.lightText}>
-                <Date dateString={date} />
+                <Date dateString={dateString} />
               </small>
             </li>
           ))}
@@ -63,13 +59,9 @@ export default function Home(props: Props): JSX.Element {
   );
 }
 
-export const getStaticProps: GetStaticProps<Props, never> = async () => {
-  const allPosts = getSortedPostsData().map(({ id, date, title }) => {
-    return { id, date, title };
+export const getStaticProps: GetStaticProps<Props, never> = () => {
+  const posts = getSortedPostsData().map(({ id, title, dateString }) => {
+    return { id, title, dateString };
   });
-  return Promise.resolve({
-    props: {
-      allPosts,
-    },
-  });
+  return { props: { posts } };
 };
