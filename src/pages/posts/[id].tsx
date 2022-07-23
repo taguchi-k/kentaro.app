@@ -12,7 +12,7 @@ import { asPostId } from 'models/post-id';
 
 type Props = { post: Post };
 
-export default function Post({
+export default function PostPage({
   post: { id, title, dateString, content },
 }: Props): JSX.Element {
   const url = `${baseUrl}/posts/${id}`;
