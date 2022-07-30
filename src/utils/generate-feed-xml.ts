@@ -1,12 +1,13 @@
 import RSS from 'rss';
 
+import { exists } from './exists';
 import { siteTitle } from 'components/layout';
-import { getPostData, getSortedPostsData } from 'lib/posts';
+import { getSortedPostsData } from 'lib/posts';
 
-export async function generateFeedXml(): Promise<string> {
+export function generateFeedXml(): string {
   const HOST_NAME = process.env.NEXT_PUBLIC_HOST_NAME;
 
-  if (!HOST_NAME) {
+  if (!exists(HOST_NAME)) {
     throw new Error("host name couldn't resolved.");
   }
 
@@ -16,20 +17,15 @@ export async function generateFeedXml(): Promise<string> {
     feed_url: `${HOST_NAME}/feed.xml`,
   });
 
-  const postsData = await Promise.all(
-    getSortedPostsData().map(async (post) => {
-      const processedContent = await getPostData(post.id);
-      return processedContent;
-    })
-  );
+  const postsData = getSortedPostsData();
 
   postsData.map((post) => {
     feed.item({
       title: post.title,
-      description: post.contentHtml,
+      description: post.content,
       guid: post.id,
       url: `${HOST_NAME ?? ''}/posts/${post.id}`,
-      date: post.date,
+      date: post.dateString,
       author: 'kentaro',
     });
   });

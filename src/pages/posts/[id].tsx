@@ -1,23 +1,20 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
 import { ParsedUrlQuery } from 'querystring';
+
 import Date from '../../components/date';
 import Layout, { baseUrl } from '../../components/layout';
 import { getOgImageUrl } from '../../lib/og_image';
 import { getAllPostsIds, getPostData } from '../../lib/posts';
 import utilStyles from '../../styles/utils.module.css';
+import { Post } from 'models/post';
+import { asPostId } from 'models/post-id';
 
-type Props = {
-  postData: {
-    id: string;
-    title: string;
-    date: string;
-    contentHtml: string;
-  };
-};
+type Props = { post: Post };
 
-export default function Post(props: Props): JSX.Element {
-  const { id, title, date, contentHtml } = props.postData;
+export default function PostPage({
+  post: { id, title, dateString, content },
+}: Props): JSX.Element {
   const url = `${baseUrl}/posts/${id}`;
   const image = getOgImageUrl({ title: `**${title}**`, fontSize: 100 });
 
@@ -26,7 +23,7 @@ export default function Post(props: Props): JSX.Element {
       <Head>
         <title>{title}</title>
         <link rel="canonical" href={url} />
-        <meta property="description" content={contentHtml} />
+        <meta property="description" content={content} />
 
         <meta property="og:title" content={title} key="og:title" />
         <meta property="og:type" content="article" key="og:type" />
@@ -34,7 +31,7 @@ export default function Post(props: Props): JSX.Element {
         <meta property="og:image" content={image} key="og:image" />
         <meta
           property="og:description"
-          content={contentHtml}
+          content={content}
           key="og:description"
         />
 
@@ -43,16 +40,16 @@ export default function Post(props: Props): JSX.Element {
         <meta name="twitter:image" content={image} key="twitter:image" />
         <meta
           name="twitter:description"
-          content={contentHtml}
+          content={content}
           key="twitter:description"
         />
       </Head>
       <article>
         <h1 className={utilStyles.headingXl}>{title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={date} />
+          <Date dateString={dateString} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: content }} />
       </article>
     </Layout>
   );
@@ -73,10 +70,6 @@ type Params = ParsedUrlQuery & {
 export const getStaticProps: GetStaticProps<Props, Params> = async ({
   params,
 }) => {
-  const postData = await getPostData(params?.id ?? '');
-  return {
-    props: {
-      postData,
-    },
-  };
+  const post = await getPostData(asPostId(params?.id));
+  return { props: { post } };
 };
